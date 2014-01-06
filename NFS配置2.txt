@@ -1,0 +1,62 @@
+NFS  -- Network File System
+ 用于UNIX/Linux系统间通过网络进行文件共享，用户可以把网络中NFS服务提供的文件共享目录挂载到本地文件目录中，可以象对本地文件系统一样操作NFS文件系统的内容。
+ 服务时Linux系统内置的功能，一般安装时并不会自动指定开机时启动。因此，可以执行ntsysv命令，设置nfs开机时启动NFS服务。
+ 
+rpm -q portmap
+rpm -qa | grep nfs
+ 
+portmap 一定要优先于nfs启动
+ service portmap start
+ service nfs start
+ 
+由于nfs通过rpc(Remote Procedure Call, 远程过程调用)协议来使用远程计算机上的文件，因此系统中的RPC服务必须启动
+ 
+rpcinfo -p
+ 
+portmap的端口是111
+ protmap分配端口给nfs
+ 
+配置文件
+ /etc/exports 
+ /sharedirecory         host          (rights) (host 和 (right) 之间无空格)
+ /共享目录的的绝对路径  客户主机地址  权限
+ 
+表示所有主机皆可访问目录
+ /home/ftp/pub *(ro)
+ 只允许192.168.9.100访问
+ /home/ftp/pub 192.168.9.100(ro)
+ 只允许192.168.9.0 该网段上的主机访问此目录，权限为读写（rw）
+ /home/ftp/pub 192.168.9.0(rw)
+ 
+service nfs restart
+ 
+
+
+showmount -e nfs主机名或ip地址
+ 查看nfs服务器共享了那些目录
+ mount NFS 主机名或ip地址:/share/ /mnt/share
+ 
+mount 192.168.9.90:/etc /mnt/share
+ df 查看是否挂载成功
+ 
+exportfs命令用于维护当前主机中nfs服务器的输出目录列表 不用重新启动服务
+ 重新输出文件共享
+ exportfs -rv
+ 
+开机时自动挂载
+ vi /etc/fstab
+ 
+192.168.9.90:/etc  /mnt/share  nfs   ro    0  0
+ 
+
+
+
+此时，如果服务器端的防火墙有开着的话，将会提示错误，如：
+ 
+     mount: mount to NFS server '192.168.0.10' failed: System Error: No route to host.
+ 
+
+
+我在挂载的时候就被卡在这里了，主要是对防火墙。
+ 
+iptables -F 即可
