@@ -169,3 +169,49 @@ Sum the values in the fourth column:
     abc	1	2	3
     hij	1	5	99
     1102
+
+# 本地test
+
+...➜  awk git:(master) awk '$1 ~ /a/' cols.txt
+abc 1   2   3
+ga  7   9   10
+➜  awk git:(master) awk '$1 ~ 1' cols.txt
+➜  awk git:(master) awk '$2 ~ 1' cols.txt
+abc 1   2   3
+hij 1   5   99
+➜  awk git:(master) awk '$2 ~ 1' cols.txt
+abc 1   2   3
+hij 1   5   99
+➜  awk git:(master) awk '$2 ~ 5' cols.txt
+➜  awk git:(master) awk '$2 = 1' cols.txt
+abc 1 2 3
+def 1 5 6
+ga 1 9 10
+hij 1 5 99
+➜  awk git:(master) awk '$2 == 1' cols.txt
+abc 1   2   3
+hij 1   5   99
+➜  awk git:(master) awk '$2 ~ 1' cols.txt
+abc 1   2   3
+hij 1   5   99
+➜  awk git:(master) awk '$2 ~ 1' cols.txt
+abc 1   2   3
+hij 1   5   99
+➜  awk git:(master) awk '$2 ~ 1' cols.txt
+abc 1   2   3
+hij 1   5   99
+➜  awk git:(master) awk '$2 ~ 1' cols.txt
+abc 1   2   3
+hij 1   5   99
+➜  awk git:(master) awk '$2 ~ 1' cols.txt
+abc 1   2   3
+hij 1   5   99
+➜  awk git:(master) awk '$2 ~ 1' cols.txt
+abc 1   2   3
+hij 1   5   99
+➜  awk git:(master) awk '$2 ~ 1' cols.txt
+abc 1   2   3
+hij 1   5   99
+➜  awk git:(master) awk '$2 ~ 1' cols.txt
+abc 1   2   3
+hij 1   5   99
