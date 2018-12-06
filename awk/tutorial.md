@@ -172,6 +172,7 @@ Sum the values in the fourth column:
 
 # 本地test
 
+```
 ...➜  awk git:(master) awk '$1 ~ /a/' cols.txt
 abc 1   2   3
 ga  7   9   10
@@ -215,3 +216,5 @@ hij 1   5   99
 ➜  awk git:(master) awk '$2 ~ 1' cols.txt
 abc 1   2   3
 hij 1   5   99
+
+```
